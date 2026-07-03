@@ -85,6 +85,7 @@
   background-size: 400% 400%;
   animation: work-gradient 8s ease infinite;
   z-index: 0;
+  will-change: transform;
 }
 
 .work-card-iframe {

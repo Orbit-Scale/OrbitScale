@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Work.css';
@@ -37,6 +37,51 @@ const projects = [
     accent: '#06b6d4',
   },
 ];
+
+const WorkCard = memo(function WorkCard({ project, isMobile }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      className="work-card" 
+      data-cursor="view"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={() => {
+        const target = project.url || project.link;
+        if (target) window.open(target, '_blank');
+      }}
+      style={{ cursor: (project.url || project.link) ? 'pointer' : 'default' }}
+    >
+      <div
+        className="work-card-image"
+        style={{ background: project.color }}
+      >
+        <div
+          className="work-card-image-inner"
+          style={{
+            background: `linear-gradient(135deg, ${project.color}, ${project.accent}, ${project.color}, ${project.accent})`,
+          }}
+        />
+        {/* Only render iframe on Desktop AND when hovered to prevent massive CPU/GPU lag */}
+        {!isMobile && project.url && isHovered && (
+          <iframe 
+            src={project.url} 
+            className="work-card-iframe" 
+            loading="lazy" 
+            tabIndex="-1"
+            title={`${project.title} Preview`}
+          />
+        )}
+      </div>
+      <div className="work-card-info">
+        <span className="work-card-num">{project.num}</span>
+        <h3 className="work-card-title">{project.title}</h3>
+        <span className="work-card-category">{project.category}</span>
+      </div>
+    </div>
+  );
+});
 
 export default function Work() {
   const sectionRef = useRef(null);
@@ -91,42 +136,7 @@ export default function Work() {
       </div>
       <div className="work-track" ref={trackRef}>
         {projects.map((project) => (
-          <div 
-            className="work-card" 
-            key={project.num} 
-            data-cursor="view"
-            onClick={() => {
-              const target = project.url || project.link;
-              if (target) window.open(target, '_blank');
-            }}
-            style={{ cursor: (project.url || project.link) ? 'pointer' : 'default' }}
-          >
-            <div
-              className="work-card-image"
-              style={{ background: project.color }}
-            >
-              <div
-                className="work-card-image-inner"
-                style={{
-                  background: `linear-gradient(135deg, ${project.color}, ${project.accent}, ${project.color}, ${project.accent})`,
-                }}
-              />
-              {!isMobile && project.url && (
-                <iframe 
-                  src={project.url} 
-                  className="work-card-iframe" 
-                  loading="lazy" 
-                  tabIndex="-1"
-                  title={`${project.title} Preview`}
-                />
-              )}
-            </div>
-            <div className="work-card-info">
-              <span className="work-card-num">{project.num}</span>
-              <h3 className="work-card-title">{project.title}</h3>
-              <span className="work-card-category">{project.category}</span>
-            </div>
-          </div>
+          <WorkCard key={project.num} project={project} isMobile={isMobile} />
         ))}
       </div>
     </section>

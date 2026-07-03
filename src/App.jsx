@@ -23,18 +23,23 @@ function App() {
 
   /* ── Init Lenis + GSAP sync ── */
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      touchMultiplier: 2,
-      infinite: false,
-    });
+    // Disable Lenis entirely on mobile for native 60FPS scroll performance
+    const isMobile = window.innerWidth < 768;
+    
+    if (!isMobile) {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        touchMultiplier: 2,
+        infinite: false,
+      });
 
-    lenisRef.current = lenis;
+      lenisRef.current = lenis;
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
+    }
 
     // Enable custom cursor on desktop
     if (window.matchMedia('(pointer: fine)').matches) {
@@ -42,7 +47,7 @@ function App() {
     }
 
     return () => {
-      lenis.destroy();
+      if (lenisRef.current) lenisRef.current.destroy();
     };
   }, []);
 
