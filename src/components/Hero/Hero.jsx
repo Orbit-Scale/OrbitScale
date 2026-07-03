@@ -1,8 +1,11 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { EASE } from '../../utils/animations';
-import HeroCanvas from './HeroCanvas';
+import { lazy, Suspense } from 'react';
 import './Hero.css';
+
+// Lazy load the heavy 3D canvas so it splits out Three.js from the main bundle
+const HeroCanvas = lazy(() => import('./HeroCanvas'));
 
 export default function Hero() {
   const sectionRef = useRef(null);
@@ -55,8 +58,10 @@ export default function Hero() {
 
   return (
     <section id="hero" className="hero" ref={sectionRef}>
-      {/* Three.js background */}
-      <HeroCanvas />
+      {/* Three.js background (Lazy Loaded) */}
+      <Suspense fallback={null}>
+        <HeroCanvas />
+      </Suspense>
 
       {/* Content */}
       <div className="hero-content container">

@@ -24,13 +24,9 @@ export default function HoloGlow() {
         },
       });
 
-      // Rotate the entire wrapper slowly as user scrolls down
-      tl.to(wrapperRef.current, {
-        rotation: 180,
-        ease: 'none',
-      }, 0);
-
+      // We remove wrapper rotation to dramatically speed up compositor rendering
       // Shift individual orbs slightly
+
       tl.to(orb1Ref.current, {
         x: '20vw',
         y: '20vh',

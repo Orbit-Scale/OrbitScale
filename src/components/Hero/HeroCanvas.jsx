@@ -3,9 +3,9 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /* ── Ambient Particles ── */
-function Particles({ count = 2000 }) {
+function Particles({ count = 800 }) {
   const mesh = useRef();
-  const { viewport, pointer } = useThree();
+  const { viewport, pointer, gl } = useThree();
 
   const positions = useMemo(() => {
     const arr = new Float32Array(count * 3);
@@ -18,7 +18,12 @@ function Particles({ count = 2000 }) {
   }, [count]);
 
   useFrame(({ clock }) => {
-    if (!mesh.current) return;
+    // Optimization: Skip expensive math and WebGL draw calls if the canvas is not on screen
+    if (!mesh.current || !gl.domElement.parentElement || !document.body.contains(gl.domElement)) return;
+    
+    // Quick visibility check based on scroll (Hero is at the top)
+    if (window.scrollY > window.innerHeight) return;
+
     const t = clock.getElapsedTime();
 
     // Gentle rotation
@@ -114,7 +119,7 @@ export default function HeroCanvas() {
         powerPreference: 'high-performance',
       }}
     >
-      <Particles count={2000} />
+      <Particles count={800} />
       <FloatingMesh />
     </Canvas>
   );

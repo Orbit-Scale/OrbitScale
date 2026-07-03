@@ -10,8 +10,8 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
-  /* Use screen to allow the glow to brightly illuminate the dark background */
-  mix-blend-mode: screen; 
+  /* Use normal blending with softer gradients to avoid expensive screen re-compositing */
+  mix-blend-mode: normal; 
   opacity: 0.8;
 }
 
@@ -28,7 +28,6 @@
 .holo-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
   will-change: transform, opacity;
   opacity: 0.7;
 }
@@ -39,7 +38,8 @@
   height: 70vw;
   max-width: 800px;
   max-height: 800px;
-  background: radial-gradient(circle, rgba(0, 240, 255, 0.4) 0%, rgba(0, 80, 255, 0) 70%);
+  /* Pre-softened gradient to replace blur() */
+  background: radial-gradient(circle, rgba(0, 150, 200, 0.2) 0%, rgba(0, 100, 150, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
   top: -20%;
   left: -10%;
 }
@@ -48,22 +48,24 @@
 .holo-orb--2 {
   width: 60vw;
   height: 60vw;
-  max-width: 700px;
-  max-height: 700px;
-  background: radial-gradient(circle, rgba(255, 0, 128, 0.4) 0%, rgba(102, 0, 51, 0) 70%);
+  max-width: 600px;
+  max-height: 600px;
+  /* Pre-softened gradient to replace blur() */
+  background: radial-gradient(circle, rgba(200, 0, 150, 0.2) 0%, rgba(150, 0, 100, 0.1) 40%, rgba(0, 0, 0, 0) 70%);
   bottom: -10%;
   right: -10%;
 }
 
-/* ── Orb 3: Beige / Warm Light ── */
+/* ── Orb 3: Ruby / Dark Red ── */
 .holo-orb--3 {
-  width: 50vw;
-  height: 50vw;
-  max-width: 600px;
-  max-height: 600px;
-  background: radial-gradient(circle, rgba(245, 245, 220, 0.3) 0%, rgba(245, 245, 220, 0) 70%);
-  top: 40%;
-  left: 40%;
+  width: 80vw;
+  height: 80vw;
+  max-width: 900px;
+  max-height: 900px;
+  /* Pre-softened gradient to replace blur() */
+  background: radial-gradient(circle, rgba(150, 0, 50, 0.15) 0%, rgba(100, 0, 30, 0.05) 50%, rgba(0, 0, 0, 0) 70%);
+  top: 30%;
+  left: 20%;
 }
 
 @media (max-width: 768px) {
