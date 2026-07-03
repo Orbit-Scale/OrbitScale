@@ -292,4 +292,24 @@ button {
     --space-3xl: 4rem;
     --container-padding: 1.25rem;
   }
+
+  /* Phase 1 & 15: Drastically reduce backdrop-filter on mobile to save GPU */
+  .navbar-inner,
+  .pricing-card,
+  .service-card,
+  .work-card,
+  .about-card,
+  .pricing-included {
+    backdrop-filter: blur(4px) !important;
+    -webkit-backdrop-filter: blur(4px) !important;
+    background: rgba(20, 20, 20, 0.92) !important;
+  }
+
+  /* Disable heavy mask gradients on mobile glass borders if they exist */
+  .pricing-card::before,
+  .service-card::before,
+  .work-card::before,
+  .navbar-inner::before {
+    opacity: 0.3 !important;
+  }
 }

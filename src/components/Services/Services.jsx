@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
@@ -28,7 +28,7 @@ const services = [
   },
 ];
 
-function ServiceCard({ num, title, desc }) {
+const ServiceCard = memo(function ServiceCard({ num, title, desc }) {
   const cardRef = useRef(null);
   const glowRef = useRef(null);
 
@@ -98,7 +98,7 @@ function ServiceCard({ num, title, desc }) {
       </div>
     </div>
   );
-}
+});
 
 export default function Services() {
   const sectionRef = useRef(null);

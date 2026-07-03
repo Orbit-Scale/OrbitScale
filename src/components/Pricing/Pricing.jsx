@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Pricing.css';
@@ -136,7 +136,7 @@ const includedFeatures = [
   'Scalable Architecture',
 ];
 
-function PricingCard({ tier, price, desc, featured, features, cta }) {
+const PricingCard = memo(function PricingCard({ tier, price, desc, featured, features, cta }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const displayFeatures = isExpanded ? features : features.slice(0, 5);
   const hasMore = features.length > 5;
@@ -199,10 +199,11 @@ function PricingCard({ tier, price, desc, featured, features, cta }) {
             {isExpanded ? 'Show less' : `+ ${features.length - 5} more features`}
           </button>
         )}
+          <div className="pricing-expand-btn"></div>
       </div>
     </div>
   );
-}
+});
 
 export default function Pricing() {
   const sectionRef = useRef(null);

@@ -41,6 +41,9 @@ const projects = [
 export default function Work() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  
+  // Phase 15: Determine if device is mobile to avoid rendering heavy iframes
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -108,7 +111,7 @@ export default function Work() {
                   background: `linear-gradient(135deg, ${project.color}, ${project.accent}, ${project.color}, ${project.accent})`,
                 }}
               />
-              {project.url && (
+              {!isMobile && project.url && (
                 <iframe 
                   src={project.url} 
                   className="work-card-iframe" 

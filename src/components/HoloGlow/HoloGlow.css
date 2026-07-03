@@ -65,3 +65,14 @@
   top: 40%;
   left: 40%;
 }
+
+@media (max-width: 768px) {
+  .holo-orb {
+    /* Drastically reduce blur on mobile to save GPU */
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+  .holo-glow-container {
+    opacity: 0.5; /* Reduce overall intensity on small screens */
+  }
+}
