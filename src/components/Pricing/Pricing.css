@@ -400,7 +400,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    gap: 1.25rem;
+    gap: 1rem;
     padding-bottom: 2rem;
     max-width: 100vw;
     width: 100vw;
@@ -410,6 +410,9 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     align-items: stretch;
+    /* Soft fade on edges to eliminate sharp cutoffs */
+    -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
   }
 
   .pricing-grid::-webkit-scrollbar {
@@ -419,7 +422,7 @@
   .pricing-card {
     min-height: auto;
     padding: 2rem 1.5rem;
-    flex: 0 0 clamp(280px, 85vw, 340px);
+    flex: 0 0 clamp(260px, 78vw, 320px);
     scroll-snap-align: center;
   }
 
