@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { useMagnet } from '../../hooks/useMagnet';
+import { useLenisScroll } from '../../hooks/useLenisScroll';
 import './Navbar.css';
 
 const navLinks = [
@@ -88,6 +89,8 @@ const mobileTabs = [
 export default function Navbar() {
   const navRef = useRef(null);
   const ctaMagnetRef = useMagnet(0.25);
+  const handleLenisScroll = useLenisScroll();
+  const ignoreObserverRef = useRef(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -161,6 +164,7 @@ export default function Navbar() {
     };
 
     const observerCallback = (entries) => {
+      if (ignoreObserverRef.current) return;
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
@@ -180,6 +184,12 @@ export default function Navbar() {
 
   const handleTabClick = (id) => {
     setActiveSection(id);
+    
+    // Briefly suspend observer so it doesn't fight the manual click
+    ignoreObserverRef.current = true;
+    setTimeout(() => {
+      ignoreObserverRef.current = false;
+    }, 1200);
   };
 
   const getIndicatorStyle = () => {
@@ -220,7 +230,11 @@ export default function Navbar() {
           <ul className="navbar-links">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="navbar-link">
+                <a 
+                  href={link.href} 
+                  className="navbar-link"
+                  onClick={(e) => handleLenisScroll(e, link.href)}
+                >
                   {link.label}
                   <span className="navbar-link-line" />
                 </a>
@@ -257,7 +271,7 @@ export default function Navbar() {
                 key={tab.id}
                 href={tab.href}
                 className={`mobile-tab-item ${isActive ? 'mobile-tab-item--active' : ''}`}
-                onClick={() => handleTabClick(tab.id)}
+                onClick={(e) => handleLenisScroll(e, tab.href, () => handleTabClick(tab.id))}
               >
                 {tab.icon}
                 <span className="mobile-tab-label">{tab.label}</span>

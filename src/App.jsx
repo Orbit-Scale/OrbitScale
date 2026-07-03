@@ -14,11 +14,13 @@ import Work from './components/Work/Work';
 import Footer from './components/Footer/Footer';
 import HoloGlow from './components/HoloGlow/HoloGlow';
 import Pricing from './components/Pricing/Pricing';
+import { LenisContext } from './contexts/LenisContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [lenis, setLenis] = useState(null);
   const lenisRef = useRef(null);
 
   /* ── Init Lenis + GSAP sync ── */
@@ -35,6 +37,7 @@ function App() {
       });
 
       lenisRef.current = lenis;
+      setLenis(lenis);
 
       lenis.on('scroll', ScrollTrigger.update);
       gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -69,18 +72,15 @@ function App() {
   }, []);
 
   return (
-    <>
+    <LenisContext.Provider value={lenis}>
       {/* Grain texture overlay */}
       <div className="grain" aria-hidden="true" />
 
-      {/* Holographic Background Light */}
-      <HoloGlow />
+      {/* Preloader */}
+      <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
 
       {/* Custom cursor (desktop only) */}
       <CustomCursor />
-
-      {/* Preloader */}
-      <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
 
       {/* Navigation */}
       <Navbar />
@@ -97,7 +97,10 @@ function App() {
 
       {/* Footer */}
       <Footer />
-    </>
+      
+      {/* Holographic Background Light */}
+      <HoloGlow />
+    </LenisContext.Provider>
   );
 }
 

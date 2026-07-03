@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLenisScroll } from '../../hooks/useLenisScroll';
 import './Footer.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   const footerRef = useRef(null);
+  const handleLenisScroll = useLenisScroll();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -128,11 +130,11 @@ export default function Footer() {
           <div className="footer-nav">
             <h4 className="footer-column-title">Navigation</h4>
             <ul className="footer-links">
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#work">Work</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#hero" onClick={(e) => handleLenisScroll(e, '#hero')}>Home</a></li>
+              <li><a href="#work" onClick={(e) => handleLenisScroll(e, '#work')}>Work</a></li>
+              <li><a href="#about" onClick={(e) => handleLenisScroll(e, '#about')}>About</a></li>
+              <li><a href="#services" onClick={(e) => handleLenisScroll(e, '#services')}>Services</a></li>
+              <li><a href="#contact" onClick={(e) => handleLenisScroll(e, '#contact')}>Contact</a></li>
             </ul>
           </div>
 

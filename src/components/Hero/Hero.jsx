@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { EASE } from '../../utils/animations';
 import { lazy, Suspense } from 'react';
+import { useLenisScroll } from '../../hooks/useLenisScroll';
 import './Hero.css';
 
 // Lazy load the heavy 3D canvas so it splits out Three.js from the main bundle
@@ -9,6 +10,7 @@ const HeroCanvas = lazy(() => import('./HeroCanvas'));
 
 export default function Hero() {
   const sectionRef = useRef(null);
+  const handleLenisScroll = useLenisScroll();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -87,7 +89,11 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="hero-cta">
-          <a href="#work" className="hero-btn hero-btn--primary">
+          <a 
+            href="#work" 
+            className="hero-btn hero-btn--primary"
+            onClick={(e) => handleLenisScroll(e, '#work')}
+          >
             Explore Our Work
             <svg
               width="16"
@@ -105,7 +111,13 @@ export default function Hero() {
               />
             </svg>
           </a>
-          <a href="#about" className="hero-btn hero-btn--ghost">Our Story</a>
+          <a 
+            href="#about" 
+            className="hero-btn hero-btn--ghost"
+            onClick={(e) => handleLenisScroll(e, '#about')}
+          >
+            Our Story
+          </a>
         </div>
       </div>
 
