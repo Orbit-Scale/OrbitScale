@@ -13,6 +13,7 @@
   will-change: transform;
   transition: transform 0.5s var(--ease-out);
   padding: 0 1rem; /* safe area for mobile just in case */
+  pointer-events: none; /* Let clicks pass through empty space */
 }
 
 .navbar--hidden {
@@ -25,6 +26,7 @@
   justify-content: space-between;
   padding: 1.25rem 2.5rem;
   border-radius: var(--radius-full);
+  pointer-events: auto; /* Restore clicks */
   width: 100%;
   max-width: 1400px; /* Very wide at top */
   background: rgba(20, 20, 20, 0);
@@ -253,15 +255,16 @@
   }
 
   .navbar-inner {
-    min-width: auto;
-    width: auto; /* Shrink-wrap the logo */
-    padding: 0.5rem 1.25rem;
+    min-width: auto !important;
+    width: auto !important; /* Shrink-wrap the logo */
+    max-width: none !important;
+    padding: 0.5rem 1.25rem !important;
     justify-content: center;
     background: rgba(20, 20, 20, 0.4) !important;
     border: 1px solid rgba(255, 255, 255, 0.08) !important;
     backdrop-filter: blur(40px) saturate(180%) !important;
     -webkit-backdrop-filter: blur(40px) saturate(180%) !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3) !important;
   }
 
   .navbar-links,
