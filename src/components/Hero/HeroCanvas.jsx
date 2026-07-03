@@ -1,4 +1,4 @@
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -102,6 +102,35 @@ export default function HeroCanvas() {
   // Determine mobile status for performance adjustments
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
+  // Tracks whether the Hero is still roughly in view. Drives frameloop below —
+  // this is what actually stops the GPU from rendering, not just the per-frame
+  // math (skipping the math alone still leaves R3F calling gl.render() every
+  // frame in the background for as long as the Canvas is mounted).
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    if (isMobile) return;
+
+    let ticking = false;
+
+    const checkVisibility = () => {
+      // Small buffer so the canvas doesn't stop the instant the Hero edge
+      // passes, avoiding a visible pop when scrolling back up quickly.
+      setIsVisible(window.scrollY < window.innerHeight * 1.15);
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(checkVisibility);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobile]);
+
   // WebGL causes massive battery drain and framerate drops on mobile devices.
   // Completely disable the canvas on mobile for a silky smooth 60 FPS experience.
   if (isMobile) return null;
@@ -113,6 +142,10 @@ export default function HeroCanvas() {
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       eventSource={typeof document !== 'undefined' ? document.body : undefined}
       eventPrefix="client"
+      // 'never' fully halts R3F's render loop (no gl.render(), no useFrame
+      // callbacks) once the Hero scrolls out of view, instead of just
+      // skipping the internal math while still rendering every frame.
+      frameloop={isVisible ? 'always' : 'never'}
       gl={{
         antialias: false,
         alpha: true,

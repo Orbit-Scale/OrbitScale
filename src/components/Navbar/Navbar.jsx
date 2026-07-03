@@ -115,20 +115,36 @@ export default function Navbar() {
     return () => ctx.revert();
   }, []);
 
-  /* ── Scroll tracking for top navbar ── */
+  /* ── Scroll tracking for top navbar ──
+     Native scroll events can fire many times per frame. Without throttling,
+     every one of those triggers a React state update + re-render, and each
+     re-render can toggle the --scrolled class, which transitions
+     backdrop-filter/box-shadow — both expensive to recompute. Coalescing
+     to one check per animation frame keeps this to at most 60 updates/sec,
+     and only when the derived state actually changes. */
+  const tickingRef = useRef(false);
+
   const handleScroll = useCallback(() => {
-    const currentY = window.scrollY;
-    const threshold = 50;
+    if (tickingRef.current) return;
+    tickingRef.current = true;
 
-    setIsScrolled(currentY > threshold);
+    requestAnimationFrame(() => {
+      const currentY = window.scrollY;
+      const threshold = 50;
 
-    if (currentY > lastScrollY.current && currentY > 100) {
-      setIsHidden(true);
-    } else {
-      setIsHidden(false);
-    }
+      setIsScrolled((prev) => {
+        const next = currentY > threshold;
+        return prev === next ? prev : next;
+      });
 
-    lastScrollY.current = currentY;
+      setIsHidden((prev) => {
+        const next = currentY > lastScrollY.current && currentY > 100;
+        return prev === next ? prev : next;
+      });
+
+      lastScrollY.current = currentY;
+      tickingRef.current = false;
+    });
   }, []);
 
   useEffect(() => {
