@@ -27,8 +27,9 @@ export function useLenisScroll() {
         onComplete: () => ScrollTrigger.refresh() 
       });
     } else {
-      // Mobile: fallback to native smooth scroll since Lenis is disabled
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Mobile: fallback to highly compatible native smooth scroll
+      const yOffset = targetElement.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: yOffset, behavior: 'smooth' });
       // Usually, native scroll doesn't give a callback when it finishes,
       // but ScrollTrigger refresh on mobile can be done after a timeout
       setTimeout(() => ScrollTrigger.refresh(), 800);

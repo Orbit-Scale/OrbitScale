@@ -11,10 +11,12 @@ import Marquee from './components/Marquee/Marquee';
 import About from './components/About/About';
 import Services from './components/Services/Services';
 import Work from './components/Work/Work';
-import Footer from './components/Footer/Footer';
-import HoloGlow from './components/HoloGlow/HoloGlow';
+// Lazy load Footer ("contact section") and HoloGlow to prioritize front-end load
+const Footer = React.lazy(() => import('./components/Footer/Footer'));
+const HoloGlow = React.lazy(() => import('./components/HoloGlow/HoloGlow'));
 import Pricing from './components/Pricing/Pricing';
 import { LenisContext } from './contexts/LenisContext';
+import React, { Suspense } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,11 +97,11 @@ function App() {
         <Pricing />
       </main>
 
-      {/* Footer */}
-      <Footer />
-      
-      {/* Holographic Background Light */}
-      <HoloGlow />
+      {/* Footer & Heavy Background Elements (Lazy Loaded) */}
+      <Suspense fallback={null}>
+        <Footer />
+        <HoloGlow />
+      </Suspense>
     </LenisContext.Provider>
   );
 }
