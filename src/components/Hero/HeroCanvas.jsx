@@ -97,10 +97,14 @@ export default function HeroCanvas() {
   // Determine mobile status for performance adjustments
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
+  // WebGL causes massive battery drain and framerate drops on mobile devices.
+  // Completely disable the canvas on mobile for a silky smooth 60 FPS experience.
+  if (isMobile) return null;
+
   return (
     <Canvas
       camera={{ position: [0, 0, 8], fov: 60 }}
-      dpr={isMobile ? [1, 1] : [1, 1.5]}
+      dpr={[1, 1.5]}
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
       eventSource={typeof document !== 'undefined' ? document.body : undefined}
       eventPrefix="client"
@@ -110,8 +114,8 @@ export default function HeroCanvas() {
         powerPreference: 'high-performance',
       }}
     >
-      <Particles count={isMobile ? 500 : 2000} />
-      {!isMobile && <FloatingMesh />}
+      <Particles count={2000} />
+      <FloatingMesh />
     </Canvas>
   );
 }
