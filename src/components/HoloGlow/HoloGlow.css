@@ -1,0 +1,67 @@
+/* ============================================
+   Holographic Ambient Light (Scroll-reactive)
+   ============================================ */
+
+.holo-glow-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  /* Use screen to allow the glow to brightly illuminate the dark background */
+  mix-blend-mode: screen; 
+  opacity: 0.8;
+}
+
+.holo-glow-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.holo-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  will-change: transform, opacity;
+  opacity: 0.7;
+}
+
+/* ── Orb 1: Cyan / Deep Blue ── */
+.holo-orb--1 {
+  width: 70vw;
+  height: 70vw;
+  max-width: 800px;
+  max-height: 800px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.4) 0%, rgba(0, 80, 255, 0) 70%);
+  top: -20%;
+  left: -10%;
+}
+
+/* ── Orb 2: Magenta / Violet ── */
+.holo-orb--2 {
+  width: 60vw;
+  height: 60vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle, rgba(255, 0, 128, 0.4) 0%, rgba(102, 0, 51, 0) 70%);
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ── Orb 3: Beige / Warm Light ── */
+.holo-orb--3 {
+  width: 50vw;
+  height: 50vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(245, 245, 220, 0.3) 0%, rgba(245, 245, 220, 0) 70%);
+  top: 40%;
+  left: 40%;
+}
