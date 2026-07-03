@@ -145,6 +145,37 @@ export default function Navbar() {
         return prev === next ? prev : next;
       });
 
+      // ── Robust Scroll Spy Logic ──
+      if (!ignoreObserverRef.current) {
+        // We use 1/3 down the screen as the "focal point" for active sections
+        const focalPoint = currentY + window.innerHeight / 3;
+        
+        let newActiveSection = null;
+        
+        for (const tab of mobileTabs) {
+          const el = document.getElementById(tab.id);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            const elTop = rect.top + currentY;
+            const elBottom = elTop + rect.height;
+            
+            if (focalPoint >= elTop && focalPoint < elBottom) {
+              newActiveSection = tab.id;
+              break;
+            }
+          }
+        }
+        
+        // Edge Case: If scrolled to absolute bottom, force the last section (Contact)
+        if (currentY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+          newActiveSection = mobileTabs[mobileTabs.length - 1].id;
+        }
+
+        if (newActiveSection) {
+          setActiveSection((prev) => (prev !== newActiveSection ? newActiveSection : prev));
+        }
+      }
+
       lastScrollY.current = currentY;
       tickingRef.current = false;
     });
@@ -154,33 +185,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
-
-  /* ── Intersection Observer for Mobile Tab Bar ── */
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-40% 0px -40% 0px', // Triggers when section occupies the center area
-      threshold: 0,
-    };
-
-    const observerCallback = (entries) => {
-      if (ignoreObserverRef.current) return;
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-    mobileTabs.forEach((tab) => {
-      const el = document.getElementById(tab.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleTabClick = (id) => {
     setActiveSection(id);
