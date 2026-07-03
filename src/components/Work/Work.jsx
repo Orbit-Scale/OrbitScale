@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, memo } from 'react';
+import { useEffect, useRef, memo } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Work.css';
@@ -34,19 +34,14 @@ const projects = [
     title: 'Lumina Health',
     category: 'Healthcare · Mobile',
     color: '#1a2a2a',
-    accent: '#06b6d4',
   },
 ];
 
-const WorkCard = memo(function WorkCard({ project, isMobile }) {
-  const [isHovered, setIsHovered] = useState(false);
-
+const WorkCard = memo(function WorkCard({ project }) {
   return (
     <div 
       className="work-card" 
       data-cursor="view"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       onClick={() => {
         const target = project.url || project.link;
         if (target) window.open(target, '_blank');
@@ -63,16 +58,6 @@ const WorkCard = memo(function WorkCard({ project, isMobile }) {
             background: `linear-gradient(135deg, ${project.color}, ${project.accent}, ${project.color}, ${project.accent})`,
           }}
         />
-        {/* Only render iframe on Desktop AND when hovered to prevent massive CPU/GPU lag */}
-        {!isMobile && project.url && isHovered && (
-          <iframe 
-            src={project.url} 
-            className="work-card-iframe" 
-            loading="lazy" 
-            tabIndex="-1"
-            title={`${project.title} Preview`}
-          />
-        )}
       </div>
       <div className="work-card-info">
         <span className="work-card-num">{project.num}</span>
@@ -86,9 +71,6 @@ const WorkCard = memo(function WorkCard({ project, isMobile }) {
 export default function Work() {
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
-  
-  // Phase 15: Determine if device is mobile to avoid rendering heavy iframes
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -136,7 +118,7 @@ export default function Work() {
       </div>
       <div className="work-track" ref={trackRef}>
         {projects.map((project) => (
-          <WorkCard key={project.num} project={project} isMobile={isMobile} />
+          <WorkCard key={project.num} project={project} />
         ))}
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { EASE, DURATION } from '../../utils/animations';
+import { EASE } from '../../utils/animations';
 import HeroCanvas from './HeroCanvas';
 import './Hero.css';
 
