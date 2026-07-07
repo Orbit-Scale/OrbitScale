@@ -8,23 +8,23 @@ gsap.registerPlugin(ScrollTrigger);
 const services = [
   {
     num: '01',
-    title: 'Brand Strategy',
-    desc: 'We define brand positioning, messaging, and identity systems that resonate with your audience and stand out in crowded markets.',
+    title: 'Google Reviews Boosting',
+    desc: 'Enhance your business reputation and build trust with genuine customer reviews that drive local SEO ranking.',
   },
   {
     num: '02',
-    title: 'UI/UX Design',
-    desc: 'Human-centered interfaces that balance beauty with usability. Every pixel serves a purpose, every interaction tells a story.',
+    title: "NFC's",
+    desc: 'Leverage Near Field Communication (NFC) solutions for seamless, contact-free business cards, interactive marketing, and modern customer experiences.',
   },
   {
     num: '03',
-    title: 'Development',
-    desc: 'Performant, accessible, and scalable web applications built with modern technologies and engineering best practices.',
+    title: 'Boosting Online Presence',
+    desc: 'Amplify your digital footprint and reach your target audience through tailored SEO strategy, visibility campaigns, and growth hacking for websites and businesses.',
   },
   {
     num: '04',
-    title: 'Motion Design',
-    desc: 'Cinematic animations and micro-interactions that bring interfaces to life and create memorable digital experiences.',
+    title: 'Website Designing',
+    desc: 'Modern, responsive, and aesthetically stunning websites designed to capture attention, represent your brand, and convert visitors into clients.',
   },
 ];
 
