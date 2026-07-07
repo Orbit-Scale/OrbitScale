@@ -195,30 +195,70 @@
   margin-bottom: 0;
 }
 
-.pricing-price {
+.pricing-price-container {
   display: flex;
-  align-items: baseline;
-  gap: 0.25rem;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1.25rem 0 1rem;
+}
+
+.pricing-original-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 1.5rem;
+}
+
+.pricing-regular-price {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.pricing-savings-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #10b981; /* emerald */
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.15rem 0.40rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+.pricing-current-row {
+  display: flex;
+  align-items: center;
+  gap: 0.50rem;
 }
 
 .pricing-amount {
   font-family: var(--font-body); /* Switched to Inter for readable numbers */
-  font-size: var(--text-4xl); /* Increased size for emphasis */
+  font-size: 2.25rem; /* Large and bold */
   font-weight: 800;
   color: var(--color-text);
   letter-spacing: -0.04em;
 }
 
 .pricing-card--featured .pricing-amount {
-  color: #fff; /* Solid white for maximum contrast instead of hard-to-read gradient */
+  color: #fff; /* Solid white for maximum contrast */
   text-shadow: 0 4px 20px rgba(255, 255, 255, 0.15); /* Soft glow */
 }
 
-.pricing-period {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  font-weight: 400;
+.pricing-launch-badge {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-primary-light);
+  background: rgba(106, 76, 255, 0.15);
+  border: 1px solid rgba(106, 76, 255, 0.2);
+  padding: 0.15rem 0.40rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
 }
 
 .pricing-desc {
