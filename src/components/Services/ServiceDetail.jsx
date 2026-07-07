@@ -273,8 +273,8 @@ const pricingData = {
     plans: [
       {
         name: 'Scale Plan',
-        price: '₹10,999',
-        regularPrice: '₹12,999',
+        price: '₹8,999',
+        regularPrice: '₹10,999',
         featured: false,
         features: [
           '3 Google Review Tap Cards included',
@@ -287,8 +287,8 @@ const pricingData = {
       },
       {
         name: 'Elite Plan',
-        price: '₹17,999+',
-        regularPrice: '₹21,999+',
+        price: '₹14,999+',
+        regularPrice: '₹17,999+',
         featured: true,
         features: [
           '10 Google Review Tap Cards included',
@@ -302,16 +302,16 @@ const pricingData = {
       },
     ],
     addons: [
-      { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Durable custom printed card to get reviews on tap' },
-      { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Verify, optimize, and list your business on local maps' },
+      { name: 'Google Review Tap Card', price: '₹899', regularPrice: '₹1,199', period: 'per card', desc: 'Durable custom printed card to get reviews on tap' },
+      { name: 'Google Business Profile Setup', price: '₹999', regularPrice: '₹1,499', period: 'one-time', desc: 'Verify, optimize, and list your business on local maps' },
     ],
   },
   'nfcs': {
     plans: [
       {
         name: 'Launch Plan',
-        price: '₹3,999',
-        regularPrice: '₹4,999',
+        price: '₹2,999',
+        regularPrice: '₹3,999',
         featured: false,
         features: [
           '1 Premium NFC Business Card included',
@@ -323,8 +323,8 @@ const pricingData = {
       },
       {
         name: 'Growth Plan',
-        price: '₹6,999',
-        regularPrice: '₹8,499',
+        price: '₹4,999',
+        regularPrice: '₹5,999',
         featured: true,
         features: [
           '2 Premium NFC Business Cards included',
@@ -337,8 +337,8 @@ const pricingData = {
       },
       {
         name: 'Scale Plan',
-        price: '₹10,999',
-        regularPrice: '₹12,999',
+        price: '₹8,999',
+        regularPrice: '₹10,999',
         featured: false,
         features: [
           '5 Premium NFC Business Cards included',
@@ -351,8 +351,8 @@ const pricingData = {
       },
       {
         name: 'Elite Plan',
-        price: '₹17,999+',
-        regularPrice: '₹21,999+',
+        price: '₹14,999+',
+        regularPrice: '₹17,999+',
         featured: false,
         features: [
           '10 Premium NFC Business Cards included',
@@ -365,17 +365,17 @@ const pricingData = {
       },
     ],
     addons: [
-      { name: 'Premium NFC Business Card', price: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
-      { name: 'NFC Contact Card', price: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
-      { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
+      { name: 'Premium NFC Business Card', price: '₹599', regularPrice: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
+      { name: 'NFC Contact Card', price: '₹899', regularPrice: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
+      { name: 'Google Review Tap Card', price: '₹899', regularPrice: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
     ],
   },
   'boosting-online-presence': {
     plans: [
       {
         name: 'Growth Plan',
-        price: '₹6,999',
-        regularPrice: '₹8,499',
+        price: '₹4,999',
+        regularPrice: '₹5,999',
         featured: true,
         features: [
           'Basic SEO Optimization',
@@ -387,8 +387,8 @@ const pricingData = {
       },
       {
         name: 'Scale Plan',
-        price: '₹10,999',
-        regularPrice: '₹12,999',
+        price: '₹8,999',
+        regularPrice: '₹10,999',
         featured: false,
         features: [
           'Basic SEO Optimization',
@@ -401,8 +401,8 @@ const pricingData = {
       },
       {
         name: 'Elite Plan',
-        price: '₹17,999+',
-        regularPrice: '₹21,999+',
+        price: '₹14,999+',
+        regularPrice: '₹17,999+',
         featured: false,
         features: [
           'Basic SEO Optimization',
@@ -415,17 +415,17 @@ const pricingData = {
       },
     ],
     addons: [
-      { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
-      { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
-      { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+      { name: 'Google Business Profile Setup', price: '₹999', regularPrice: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
+      { name: 'Custom Domain (.com / .in)', price: '₹799', regularPrice: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+      { name: 'Website Hosting Renewal', price: '₹1,499', regularPrice: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
     ],
   },
   'website-designing': {
     plans: [
       {
         name: 'Launch Plan',
-        price: '₹3,999',
-        regularPrice: '₹4,999',
+        price: '₹2,999',
+        regularPrice: '₹3,999',
         featured: false,
         features: [
           'Up to 3 Website Pages',
@@ -438,8 +438,8 @@ const pricingData = {
       },
       {
         name: 'Growth Plan',
-        price: '₹6,999',
-        regularPrice: '₹8,499',
+        price: '₹4,999',
+        regularPrice: '₹5,999',
         featured: true,
         features: [
           'Up to 5 Website Pages',
@@ -453,8 +453,8 @@ const pricingData = {
       },
       {
         name: 'Scale Plan',
-        price: '₹10,999',
-        regularPrice: '₹12,999',
+        price: '₹8,999',
+        regularPrice: '₹10,999',
         featured: false,
         features: [
           'Up to 10 Website Pages',
@@ -468,8 +468,8 @@ const pricingData = {
       },
       {
         name: 'Elite Plan',
-        price: '₹17,999+',
-        regularPrice: '₹21,999+',
+        price: '₹14,999+',
+        regularPrice: '₹17,999+',
         featured: false,
         features: [
           'Unlimited Website Pages*',
@@ -483,10 +483,10 @@ const pricingData = {
       },
     ],
     addons: [
-      { name: 'Additional Website Page', price: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
-      { name: 'Extra Design Revision', price: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
-      { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
-      { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+      { name: 'Additional Website Page', price: '₹699', regularPrice: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
+      { name: 'Extra Design Revision', price: '₹299', regularPrice: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
+      { name: 'Website Hosting Renewal', price: '₹1,499', regularPrice: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+      { name: 'Custom Domain (.com / .in)', price: '₹799', regularPrice: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
     ],
   },
 };
@@ -834,6 +834,7 @@ export default function ServiceDetail({ id, onBack }) {
                       <span className="addon-desc">{addon.desc}</span>
                     </div>
                     <div className="addon-price-group">
+                      {addon.regularPrice && <span className="pricing-addon-regular-price">{addon.regularPrice}</span>}
                       <span className="addon-price">{addon.price}</span>
                       <span className="addon-period">{addon.period}</span>
                     </div>

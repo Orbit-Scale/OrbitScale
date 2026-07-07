@@ -22,8 +22,8 @@ const CheckIcon = () => (
 const plans = [
   {
     tier: 'Launch Plan',
-    price: '₹3,999',
-    regularPrice: '₹4,999',
+    price: '₹2,999',
+    regularPrice: '₹3,999',
     savings: 'Save ₹1,000',
     desc: 'Attractive entry price to help you close deals with small businesses',
     featured: false,
@@ -43,9 +43,9 @@ const plans = [
   },
   {
     tier: 'Growth Plan',
-    price: '₹6,999',
-    regularPrice: '₹8,499',
-    savings: 'Save ₹1,500',
+    price: '₹4,999',
+    regularPrice: '₹5,999',
+    savings: 'Save ₹1,000',
     desc: 'Our best-selling package. Perfect for serious businesses looking for high value',
     featured: true,
     features: [
@@ -67,8 +67,8 @@ const plans = [
   },
   {
     tier: 'Scale Plan',
-    price: '₹10,999',
-    regularPrice: '₹12,999',
+    price: '₹8,999',
+    regularPrice: '₹10,999',
     savings: 'Save ₹2,000',
     desc: 'For businesses wanting to grow online and collect reviews',
     featured: false,
@@ -92,9 +92,9 @@ const plans = [
   },
   {
     tier: 'Elite Plan',
-    price: '₹17,999+',
-    regularPrice: '₹21,999+',
-    savings: 'Save ₹4,000+',
+    price: '₹14,999+',
+    regularPrice: '₹17,999+',
+    savings: 'Save ₹3,000+',
     desc: 'Custom package for larger businesses with advanced requirements',
     featured: false,
     features: [
@@ -207,14 +207,14 @@ const PricingCard = memo(function PricingCard({ tier, price, regularPrice, savin
 });
 
 const addons = [
-  { name: 'Additional Website Page', price: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
-  { name: 'Premium NFC Business Card', price: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
-  { name: 'NFC Contact Card', price: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
-  { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
-  { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
-  { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
-  { name: 'Extra Design Revision', price: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
-  { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
+  { name: 'Additional Website Page', price: '₹699', regularPrice: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
+  { name: 'Premium NFC Business Card', price: '₹599', regularPrice: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
+  { name: 'NFC Contact Card', price: '₹899', regularPrice: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
+  { name: 'Google Review Tap Card', price: '₹899', regularPrice: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
+  { name: 'Custom Domain (.com / .in)', price: '₹799', regularPrice: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+  { name: 'Website Hosting Renewal', price: '₹1,499', regularPrice: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+  { name: 'Extra Design Revision', price: '₹299', regularPrice: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
+  { name: 'Google Business Profile Setup', price: '₹999', regularPrice: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
 ];
 
 export default function Pricing() {
@@ -301,6 +301,7 @@ export default function Pricing() {
                 <div className="pricing-addon-header">
                   <span className="pricing-addon-name">{addon.name}</span>
                   <div className="pricing-addon-price-group">
+                    {addon.regularPrice && <span className="pricing-addon-regular-price">{addon.regularPrice}</span>}
                     <span className="pricing-addon-price">{addon.price}</span>
                     <span className="pricing-addon-period">{addon.period}</span>
                   </div>
