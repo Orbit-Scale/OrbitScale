@@ -206,6 +206,17 @@ const PricingCard = memo(function PricingCard({ tier, price, regularPrice, savin
   );
 });
 
+const addons = [
+  { name: 'Additional Website Page', price: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
+  { name: 'Premium NFC Business Card', price: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
+  { name: 'NFC Contact Card', price: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
+  { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
+  { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+  { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+  { name: 'Extra Design Revision', price: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
+  { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
+];
+
 export default function Pricing() {
   const sectionRef = useRef(null);
 
@@ -244,6 +255,24 @@ export default function Pricing() {
           toggleActions: 'play none none none',
         },
       });
+
+      /* Addons cards reveal */
+      const addonCards = sectionRef.current.querySelectorAll('.pricing-addon-card');
+      if (addonCards.length > 0) {
+        gsap.set(addonCards, { y: 40, opacity: 0 });
+        gsap.to(addonCards, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: sectionRef.current.querySelector('.pricing-addons-grid'),
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+      }
     }, sectionRef);
 
     return () => ctx.revert();
@@ -261,6 +290,25 @@ export default function Pricing() {
           {plans.map((plan) => (
             <PricingCard key={plan.tier} {...plan} />
           ))}
+        </div>
+
+        {/* ── Add-ons & Individual Pricing ── */}
+        <div className="pricing-addons-container">
+          <h3 className="pricing-addons-title">🛠️ A La Carte & Individual Add-ons</h3>
+          <div className="pricing-addons-grid">
+            {addons.map((addon, i) => (
+              <div className="pricing-addon-card" key={i}>
+                <div className="pricing-addon-header">
+                  <span className="pricing-addon-name">{addon.name}</span>
+                  <div className="pricing-addon-price-group">
+                    <span className="pricing-addon-price">{addon.price}</span>
+                    <span className="pricing-addon-period">{addon.period}</span>
+                  </div>
+                </div>
+                <p className="pricing-addon-desc">{addon.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
         
         <div className="pricing-included">
