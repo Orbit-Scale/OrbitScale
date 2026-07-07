@@ -18,6 +18,7 @@ import {
   MousePointer, 
   Globe 
 } from 'lucide-react';
+import { useLenis } from '../../contexts/LenisContext';
 import './ServiceDetail.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -256,10 +257,15 @@ const serviceData = {
 export default function ServiceDetail({ id, onBack }) {
   const data = serviceData[id];
   const containerRef = useRef(null);
+  const lenis = useLenis();
 
   useEffect(() => {
-    // Reset scroll to top immediately
-    window.scrollTo(0, 0);
+    // Reset scroll to top immediately using Lenis if available
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     const ctx = gsap.context(() => {
       // Intro animations

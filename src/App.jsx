@@ -12,8 +12,8 @@ import About from './components/About/About';
 import Services from './components/Services/Services';
 import ServiceDetail from './components/Services/ServiceDetail';
 import Work from './components/Work/Work';
-// Lazy load Footer ("contact section") and HoloGlow to prioritize front-end load
-const Footer = React.lazy(() => import('./components/Footer/Footer'));
+import Footer from './components/Footer/Footer';
+// Lazy load HoloGlow to prioritize front-end load
 const HoloGlow = React.lazy(() => import('./components/HoloGlow/HoloGlow'));
 import Pricing from './components/Pricing/Pricing';
 import { LenisContext } from './contexts/LenisContext';
