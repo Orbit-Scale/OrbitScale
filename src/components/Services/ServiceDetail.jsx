@@ -23,7 +23,7 @@ import './ServiceDetail.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const serviceData = {
+export const serviceData = {
   'google-reviews-boosting': {
     title: 'Google Reviews Boosting',
     subtitle: 'Dominate Google Maps & Rank #1 in Local Search',
@@ -271,7 +271,13 @@ export default function ServiceDetail({ id, onBack }) {
       // Intro animations
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.fromTo('.back-btn-container', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6 });
+      // Fade in the texture overlay
+      tl.to('.detail-texture-overlay', { opacity: 0.8, duration: 1.5, ease: 'power2.out' }, 0);
+      
+      // Animate the content wrapper in
+      tl.fromTo('.detail-content-wrapper', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, 0.2);
+
+      tl.fromTo('.back-btn-container', { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.6 }, '-=0.5');
       tl.fromTo('.detail-hero-title', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.4');
       tl.fromTo('.detail-hero-subtitle', { y: 20, opacity: 0 }, { y: 0, opacity: 0.7, duration: 0.8 }, '-=0.6');
       tl.fromTo('.detail-hero-desc', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8 }, '-=0.6');
@@ -427,11 +433,15 @@ export default function ServiceDetail({ id, onBack }) {
 
   return (
     <div className="service-detail-container" ref={containerRef}>
+      {/* Texture overlay for distinct new page feel */}
+      <div className="detail-texture-overlay" />
+
       {/* Background glow elements */}
       <div className="detail-glow-blob blob-left" />
       <div className="detail-glow-blob blob-right" />
 
-      {/* Navigation Header bar */}
+      <div className="detail-content-wrapper">
+        {/* Navigation Header bar */}
       <div className="container back-header">
         <div className="back-btn-container">
           <button onClick={onBack} className="back-link">
@@ -545,6 +555,7 @@ export default function ServiceDetail({ id, onBack }) {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

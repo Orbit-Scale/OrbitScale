@@ -123,7 +123,7 @@ function App() {
       <CustomCursor />
 
       {/* Navigation */}
-      <Navbar />
+      <Navbar currentServiceId={currentServiceId} />
 
       {/* Main content sections */}
       <main>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import gsap from 'gsap';
 import { useMagnet } from '../../hooks/useMagnet';
 import { useLenisScroll } from '../../hooks/useLenisScroll';
+import { serviceData } from '../Services/ServiceDetail';
 import './Navbar.css';
 
 const navLinks = [
@@ -86,7 +87,7 @@ const mobileTabs = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar({ currentServiceId }) {
   const navRef = useRef(null);
   const ctaMagnetRef = useMagnet(0.25);
   const handleLenisScroll = useLenisScroll();
@@ -216,6 +217,7 @@ export default function Navbar() {
     'navbar',
     isHidden ? 'navbar--hidden' : '',
     isScrolled ? 'navbar--scrolled' : '',
+    currentServiceId ? 'navbar--service-mode' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -232,18 +234,31 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <ul className="navbar-links">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <a 
-                  href={link.href} 
-                  className="navbar-link"
-                  onClick={(e) => handleLenisScroll(e, link.href)}
-                >
-                  {link.label}
+            {currentServiceId ? (
+              <li className="breadcrumb-nav">
+                <a href="#services" className="navbar-link" onClick={(e) => handleLenisScroll(e, '#services')}>
+                  Services
                   <span className="navbar-link-line" />
                 </a>
+                <span className="breadcrumb-separator">/</span>
+                <span className="breadcrumb-current">
+                  {serviceData[currentServiceId]?.title || 'Service Details'}
+                </span>
               </li>
-            ))}
+            ) : (
+              navLinks.map((link) => (
+                <li key={link.label}>
+                  <a 
+                    href={link.href} 
+                    className="navbar-link"
+                    onClick={(e) => handleLenisScroll(e, link.href)}
+                  >
+                    {link.label}
+                    <span className="navbar-link-line" />
+                  </a>
+                </li>
+              ))
+            )}
           </ul>
 
           {/* CTA */}
@@ -265,24 +280,36 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile Floating Bottom Tab Bar */}
-      <nav className="mobile-tab-bar" aria-label="Mobile Navigation">
-        <div className="mobile-tab-track">
-          <div className="mobile-tab-indicator" style={getIndicatorStyle()} />
-          {mobileTabs.map((tab) => {
-            const isActive = activeSection === tab.id;
-            return (
-              <a
-                key={tab.id}
-                href={tab.href}
-                className={`mobile-tab-item ${isActive ? 'mobile-tab-item--active' : ''}`}
-                onClick={(e) => handleLenisScroll(e, tab.href, () => handleTabClick(tab.id))}
-              >
-                {tab.icon}
-                <span className="mobile-tab-label">{tab.label}</span>
-              </a>
-            );
-          })}
-        </div>
+      <nav className={`mobile-tab-bar ${currentServiceId ? 'mobile-tab-bar--service' : ''}`} aria-label="Mobile Navigation">
+        {currentServiceId ? (
+          <div className="mobile-back-home">
+            <a href="#services" onClick={(e) => handleLenisScroll(e, '#services')} className="mobile-back-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              <span>Back to Services</span>
+            </a>
+          </div>
+        ) : (
+          <div className="mobile-tab-track">
+            <div className="mobile-tab-indicator" style={getIndicatorStyle()} />
+            {mobileTabs.map((tab) => {
+              const isActive = activeSection === tab.id;
+              return (
+                <a
+                  key={tab.id}
+                  href={tab.href}
+                  className={`mobile-tab-item ${isActive ? 'mobile-tab-item--active' : ''}`}
+                  onClick={(e) => handleLenisScroll(e, tab.href, () => handleTabClick(tab.id))}
+                >
+                  {tab.icon}
+                  <span className="mobile-tab-label">{tab.label}</span>
+                </a>
+              );
+            })}
+          </div>
+        )}
       </nav>
     </>
   );

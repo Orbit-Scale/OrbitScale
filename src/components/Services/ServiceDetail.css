@@ -7,6 +7,27 @@
   overflow: hidden;
   padding-bottom: var(--space-section);
   min-height: 100vh;
+  background-color: #050505; /* Slightly darker than main page */
+}
+
+/* Distinctive Texture Overlay for Service Page */
+.detail-texture-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0; /* Animated in */
+}
+
+.detail-content-wrapper {
+  position: relative;
+  z-index: 5;
+  opacity: 0; /* Animated in */
+  transform: translateY(20px);
 }
 
 /* Glowing Neon Backdrop Blobs */
