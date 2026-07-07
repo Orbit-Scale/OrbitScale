@@ -254,6 +254,243 @@ export const serviceData = {
   }
 };
 
+const CheckIcon = () => (
+  <svg
+    className="check-icon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="20 6 9 17 4 12" />
+  </svg>
+);
+
+const pricingData = {
+  'google-reviews-boosting': {
+    plans: [
+      {
+        name: 'Scale Plan',
+        price: '₹10,999',
+        regularPrice: '₹12,999',
+        featured: false,
+        features: [
+          '3 Google Review Tap Cards included',
+          'Google Business Profile Setup & Optimization',
+          'Intelligent Feedback Routing System',
+          'Automatic WhatsApp Post-Purchase Prompts',
+          'Private Negative Feedback Shielding',
+          '90 Days Dedicated Setup Support',
+        ],
+      },
+      {
+        name: 'Elite Plan',
+        price: '₹17,999+',
+        regularPrice: '₹21,999+',
+        featured: true,
+        features: [
+          '10 Google Review Tap Cards included',
+          'Google Business Profile Setup & Optimization',
+          'Intelligent Feedback Routing System',
+          'Automatic WhatsApp Post-Purchase Prompts',
+          'Private Negative Feedback Shielding',
+          '1 Year Priority Dedicated Support',
+          'AI-Suggested Response Dashboard',
+        ],
+      },
+    ],
+    addons: [
+      { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Durable custom printed card to get reviews on tap' },
+      { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Verify, optimize, and list your business on local maps' },
+    ],
+  },
+  'nfcs': {
+    plans: [
+      {
+        name: 'Launch Plan',
+        price: '₹3,999',
+        regularPrice: '₹4,999',
+        featured: false,
+        features: [
+          '1 Premium NFC Business Card included',
+          'Custom Brand Logo Laser Engraving',
+          'Dynamic Link Redirection Profile',
+          'Fast Loading Landing Page Profile',
+          '7 Days Setup Support',
+        ],
+      },
+      {
+        name: 'Growth Plan',
+        price: '₹6,999',
+        regularPrice: '₹8,499',
+        featured: true,
+        features: [
+          '2 Premium NFC Business Cards included',
+          '1 NFC Contact Card included',
+          'Custom Brand Logo & Layout Styling',
+          'Dynamic Link Redirection Profile',
+          'Interactive Digital Business Card Profile',
+          '30 Days Dedicated Setup Support',
+        ],
+      },
+      {
+        name: 'Scale Plan',
+        price: '₹10,999',
+        regularPrice: '₹12,999',
+        featured: false,
+        features: [
+          '5 Premium NFC Business Cards included',
+          '3 NFC Contact Cards included',
+          '3 Google Review Tap Cards included',
+          'Custom Laser Engraving or UV Printing',
+          'Dynamic Link Redirection Profiles',
+          '90 Days Dedicated Support',
+        ],
+      },
+      {
+        name: 'Elite Plan',
+        price: '₹17,999+',
+        regularPrice: '₹21,999+',
+        featured: false,
+        features: [
+          '10 Premium NFC Business Cards included',
+          '5 NFC Contact Cards included',
+          '10 Google Review Tap Cards included',
+          'Premium Hardware Finishes & Custom Layouts',
+          'Dynamic Profiles & Campaign Management',
+          '1 Year Priority Support',
+        ],
+      },
+    ],
+    addons: [
+      { name: 'Premium NFC Business Card', price: '₹799', period: 'per card', desc: 'Durable smart business card with chip integration' },
+      { name: 'NFC Contact Card', price: '₹1,199', period: 'per card', desc: 'Instantly share phone numbers and business details on tap' },
+      { name: 'Google Review Tap Card', price: '₹1,199', period: 'per card', desc: 'Get reviews instantly by tapping cards on customer phones' },
+    ],
+  },
+  'boosting-online-presence': {
+    plans: [
+      {
+        name: 'Growth Plan',
+        price: '₹6,999',
+        regularPrice: '₹8,499',
+        featured: true,
+        features: [
+          'Basic SEO Optimization',
+          'Google Business Profile Setup & Optimization',
+          'Local Directory Syncing (Top 10 directories)',
+          'Basic Performance Analytics Setup',
+          '30 Days Dedicated Setup Support',
+        ],
+      },
+      {
+        name: 'Scale Plan',
+        price: '₹10,999',
+        regularPrice: '₹12,999',
+        featured: false,
+        features: [
+          'Basic SEO Optimization',
+          'Google Business Profile Setup & Optimization',
+          'Directory Synchronization (Top 30 directories)',
+          'Advanced Web Analytics Integration',
+          'Lead Generation citation creation',
+          '90 Days Dedicated Support',
+        ],
+      },
+      {
+        name: 'Elite Plan',
+        price: '₹17,999+',
+        regularPrice: '₹21,999+',
+        featured: false,
+        features: [
+          'Basic SEO Optimization',
+          'Google Business Profile Setup & Optimization',
+          'Full Directory Synchronization (50+ directories)',
+          'Advanced Web Analytics Integration',
+          'Geofenced citation building',
+          '1 Year Priority Dedicated Support',
+        ],
+      },
+    ],
+    addons: [
+      { name: 'Google Business Profile Setup', price: '₹1,499', period: 'one-time', desc: 'Optimize your business for local Google maps search' },
+      { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+      { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+    ],
+  },
+  'website-designing': {
+    plans: [
+      {
+        name: 'Launch Plan',
+        price: '₹3,999',
+        regularPrice: '₹4,999',
+        featured: false,
+        features: [
+          'Up to 3 Website Pages',
+          'Website Hosting (1 Year) & SSL',
+          'Mobile Responsive Website',
+          '1 Premium NFC Business Card included',
+          '2 Design Revisions',
+          '7 Days Dedicated Support',
+        ],
+      },
+      {
+        name: 'Growth Plan',
+        price: '₹6,999',
+        regularPrice: '₹8,499',
+        featured: true,
+        features: [
+          'Up to 5 Website Pages',
+          'Custom Domain (1 Year)',
+          'Website Hosting (1 Year) & SSL',
+          'Mobile Responsive Website',
+          '2 Premium NFC Business Cards & 1 Contact Card',
+          '5 Design Revisions',
+          '30 Days Dedicated Support',
+        ],
+      },
+      {
+        name: 'Scale Plan',
+        price: '₹10,999',
+        regularPrice: '₹12,999',
+        featured: false,
+        features: [
+          'Up to 10 Website Pages',
+          'Custom Domain (1 Year)',
+          'Website Hosting (1 Year) & SSL',
+          'Mobile Responsive Website',
+          '5 Premium NFC Business Cards & 3 Contact Cards',
+          '10 Design Revisions',
+          '90 Days Dedicated Support',
+        ],
+      },
+      {
+        name: 'Elite Plan',
+        price: '₹17,999+',
+        regularPrice: '₹21,999+',
+        featured: false,
+        features: [
+          'Unlimited Website Pages*',
+          'Custom Domain (1 Year)',
+          'Website Hosting (1 Year) & SSL',
+          'Mobile Responsive Website',
+          '10 Premium NFC Business Cards & 5 Contact Cards',
+          'Unlimited Design Revisions*',
+          '1 Year Priority Dedicated Support',
+        ],
+      },
+    ],
+    addons: [
+      { name: 'Additional Website Page', price: '₹999', period: 'per page', desc: 'Add extra custom pages to any design bundle' },
+      { name: 'Extra Design Revision', price: '₹499', period: 'per revision', desc: 'Additional design tweak round beyond your plan limit' },
+      { name: 'Website Hosting Renewal', price: '₹1,999', period: 'per year', desc: 'Reliable hosting with SSL certificate & high speed' },
+      { name: 'Custom Domain (.com / .in)', price: '₹999', period: 'per year', desc: 'Include a custom name for your brand' },
+    ],
+  },
+};
+
 export default function ServiceDetail({ id, onBack }) {
   const data = serviceData[id];
   const containerRef = useRef(null);
@@ -317,6 +554,31 @@ export default function ServiceDetail({ id, onBack }) {
         scrollTrigger: {
           trigger: '.detail-process-grid',
           start: 'top 80%',
+        }
+      });
+
+      // Animations for pricing & addons
+      gsap.from('.detail-pricing-card', {
+        y: 60,
+        opacity: 0,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.detail-pricing-grid',
+          start: 'top 80%',
+        }
+      });
+
+      gsap.from('.detail-addon-item', {
+        x: -40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.detail-addons-grid',
+          start: 'top 85%',
         }
       });
 
@@ -534,6 +796,54 @@ export default function ServiceDetail({ id, onBack }) {
           </div>
         </div>
       </section>
+
+      {/* ── Dynamic Service Pricing Section ── */}
+      {pricingData[id] && (
+        <section className="detail-pricing-section">
+          <div className="container">
+            <h2 className="detail-section-title centered">Flexible Packages & Add-ons</h2>
+            
+            <div className="detail-pricing-grid">
+              {pricingData[id].plans.map((plan, i) => (
+                <div key={i} className={`detail-pricing-card ${plan.featured ? 'featured' : ''}`}>
+                  {plan.featured && <div className="featured-badge">Best Value</div>}
+                  <div className="plan-tier">{plan.name}</div>
+                  <div className="plan-price-group">
+                    {plan.regularPrice && <span className="plan-regular-price">{plan.regularPrice}</span>}
+                    <span className="plan-price">{plan.price}</span>
+                  </div>
+                  <ul className="plan-features">
+                    {plan.features.map((f, idx) => (
+                      <li key={idx}>
+                        <CheckIcon />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            <div className="detail-addons-wrapper">
+              <h3 className="addons-title">Add-on Services</h3>
+              <div className="detail-addons-grid">
+                {pricingData[id].addons.map((addon, i) => (
+                  <div key={i} className="detail-addon-item">
+                    <div className="addon-meta">
+                      <span className="addon-name">{addon.name}</span>
+                      <span className="addon-desc">{addon.desc}</span>
+                    </div>
+                    <div className="addon-price-group">
+                      <span className="addon-price">{addon.price}</span>
+                      <span className="addon-period">{addon.period}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Bottom CTA Banner */}
       <section className="detail-footer-cta">
