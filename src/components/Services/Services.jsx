@@ -7,30 +7,38 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
+    id: 'google-reviews-boosting',
     num: '01',
     title: 'Google Reviews Boosting',
     desc: 'Enhance your business reputation and build trust with genuine customer reviews that drive local SEO ranking.',
   },
   {
+    id: 'nfcs',
     num: '02',
     title: "NFC's",
     desc: 'Leverage Near Field Communication (NFC) solutions for seamless, contact-free business cards, interactive marketing, and modern customer experiences.',
   },
   {
+    id: 'boosting-online-presence',
     num: '03',
     title: 'Boosting Online Presence',
     desc: 'Amplify your digital footprint and reach your target audience through tailored SEO strategy, visibility campaigns, and growth hacking for websites and businesses.',
   },
   {
+    id: 'website-designing',
     num: '04',
     title: 'Website Designing',
     desc: 'Modern, responsive, and aesthetically stunning websites designed to capture attention, represent your brand, and convert visitors into clients.',
   },
 ];
 
-const ServiceCard = memo(function ServiceCard({ num, title, desc }) {
+const ServiceCard = memo(function ServiceCard({ id, num, title, desc }) {
   const cardRef = useRef(null);
   const glowRef = useRef(null);
+
+  const handleClick = () => {
+    window.location.hash = `#/services/${id}`;
+  };
 
   const handleMouseMove = (e) => {
     const card = cardRef.current;
@@ -74,6 +82,8 @@ const ServiceCard = memo(function ServiceCard({ num, title, desc }) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
+      style={{ cursor: 'pointer' }}
     >
       <div className="service-card-glow" ref={glowRef} />
       <div className="service-card-num">{num}</div>

@@ -17,7 +17,10 @@ export function useLenisScroll() {
     }
 
     const targetElement = document.querySelector(targetSelector);
-    if (!targetElement) return;
+    if (!targetElement) {
+      window.location.hash = targetSelector;
+      return;
+    }
 
     if (lenis) {
       // Desktop: route through Lenis virtual scroll

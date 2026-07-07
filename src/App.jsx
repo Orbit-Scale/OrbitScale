@@ -10,6 +10,7 @@ import Hero from './components/Hero/Hero';
 import Marquee from './components/Marquee/Marquee';
 import About from './components/About/About';
 import Services from './components/Services/Services';
+import ServiceDetail from './components/Services/ServiceDetail';
 import Work from './components/Work/Work';
 // Lazy load Footer ("contact section") and HoloGlow to prioritize front-end load
 const Footer = React.lazy(() => import('./components/Footer/Footer'));
@@ -23,6 +24,7 @@ gsap.registerPlugin(ScrollTrigger);
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [lenis, setLenis] = useState(null);
+  const [currentServiceId, setCurrentServiceId] = useState(null);
   const lenisRef = useRef(null);
 
   /* ── Init Lenis + GSAP sync ── */
@@ -63,6 +65,42 @@ function App() {
     }
   }, [isLoading]);
 
+  /* ── Hash Routing logic ── */
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      const match = hash.match(/^#\/services\/([^/]+)$/);
+      
+      if (match) {
+        setCurrentServiceId(match[1]);
+      } else {
+        setCurrentServiceId(null);
+        
+        // If the hash is a landing page section (e.g. #services, #pricing, etc.),
+        // scroll to it after rendering updates
+        if (hash.startsWith('#') && hash !== '#/' && !hash.startsWith('#/services')) {
+          const targetSelector = hash;
+          setTimeout(() => {
+            const targetElement = document.querySelector(targetSelector);
+            if (targetElement) {
+              if (lenisRef.current) {
+                lenisRef.current.scrollTo(targetElement, { duration: 1.2 });
+              } else {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }, 100);
+        }
+      }
+    };
+
+    // Run once on load to catch initial hash (e.g. if page refreshed on a route)
+    handleHashChange();
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   /* ── Preloader exit callback ── */
   const handlePreloaderComplete = useCallback(() => {
     setIsLoading(false);
@@ -89,12 +127,18 @@ function App() {
 
       {/* Main content sections */}
       <main>
-        <Hero />
-        <Marquee />
-        <About />
-        <Services />
-        <Work />
-        <Pricing />
+        {currentServiceId ? (
+          <ServiceDetail id={currentServiceId} onBack={() => { window.location.hash = '#services'; }} />
+        ) : (
+          <>
+            <Hero />
+            <Marquee />
+            <About />
+            <Services />
+            <Work />
+            <Pricing />
+          </>
+        )}
       </main>
 
       {/* Footer & Heavy Background Elements (Lazy Loaded) */}
