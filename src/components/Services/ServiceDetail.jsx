@@ -19,6 +19,7 @@ import {
   Globe 
 } from 'lucide-react';
 import { useLenis } from '../../contexts/LenisContext';
+import Service3DVisual from './Service3DVisual';
 import './ServiceDetail.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -321,110 +322,6 @@ export default function ServiceDetail({ id, onBack }) {
 
   if (!data) return null;
 
-  const renderVisual = () => {
-    switch (data.visualType) {
-      case 'google-review':
-        return (
-          <div className="visual-wrapper google-review-visual">
-            <div className="review-glow-ring" />
-            <div className="review-card-panel">
-              <div className="review-card-header">
-                <div className="avatar-placeholder" />
-                <div>
-                  <div className="avatar-name">Verified Customer</div>
-                  <div className="star-rating">
-                    {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="star-icon fill-gold stroke-gold" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <p className="review-card-text">"Outstanding service! Using their system was incredibly smooth. Highly recommended."</p>
-              <div className="review-google-logo">
-                <span className="g-blue">G</span>
-                <span className="g-red">o</span>
-                <span className="g-yellow">o</span>
-                <span className="g-blue">g</span>
-                <span className="g-green">l</span>
-                <span className="g-red">e</span>
-                <span className="review-label">Review</span>
-              </div>
-            </div>
-            <div className="floating-bubble bubble-1">+15% Local Rank</div>
-            <div className="floating-bubble bubble-2">5.0 Rating</div>
-          </div>
-        );
-      case 'nfc-tap':
-        return (
-          <div className="visual-wrapper nfc-visual">
-            <div className="nfc-card-glow" />
-            <div className="nfc-card-body">
-              <div className="nfc-chip" />
-              <div className="nfc-logo">OrbitScale</div>
-              <div className="nfc-contact-info">
-                <div className="nfc-bar" />
-                <div className="nfc-bar short" />
-              </div>
-              <div className="nfc-tap-label">TAP TO CONNECT</div>
-            </div>
-            <div className="nfc-phone-hand">
-              <Smartphone className="nfc-phone-icon" />
-              <div className="wave wave-1" />
-              <div className="wave wave-2" />
-            </div>
-          </div>
-        );
-      case 'presence-grow':
-        return (
-          <div className="visual-wrapper presence-visual">
-            <div className="graph-grid">
-              <div className="graph-col col-1"><div className="graph-bar" style={{height: '30%'}} /></div>
-              <div className="graph-col col-2"><div className="graph-bar" style={{height: '50%'}} /></div>
-              <div className="graph-col col-3"><div className="graph-bar" style={{height: '45%'}} /></div>
-              <div className="graph-col col-4"><div className="graph-bar" style={{height: '75%'}} /></div>
-              <div className="graph-col col-5"><div className="graph-bar active" style={{height: '95%'}}><div className="active-dot" /></div></div>
-            </div>
-            <div className="presence-stats">
-              <div className="presence-stat-item">
-                <Search className="presence-icon" />
-                <span>Google Pack #1</span>
-              </div>
-              <div className="presence-stat-item">
-                <Compass className="presence-icon" />
-                <span>Maps Traffic +180%</span>
-              </div>
-            </div>
-          </div>
-        );
-      case 'design-web':
-        return (
-          <div className="visual-wrapper design-visual">
-            <div className="browser-mock">
-              <div className="browser-header">
-                <span className="dot dot-r" />
-                <span className="dot dot-y" />
-                <span className="dot dot-g" />
-              </div>
-              <div className="browser-content">
-                <div className="mock-hero">
-                  <div className="mock-text-large" />
-                  <div className="mock-text-sub" />
-                  <div className="mock-btn" />
-                </div>
-                <div className="mock-grid">
-                  <div className="mock-card"><div className="mock-img" /></div>
-                  <div className="mock-card"><div className="mock-img" /></div>
-                </div>
-              </div>
-            </div>
-            <div className="glass-indicator">Responsive React</div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
   return (
     <div className="service-detail-container" ref={containerRef}>
       {/* Background glow elements */}
@@ -460,8 +357,8 @@ export default function ServiceDetail({ id, onBack }) {
               </a>
             </div>
             <div className="detail-visual-container">
-              <div className="detail-visual">
-                {renderVisual()}
+              <div className="detail-visual" style={{ width: '100%', height: '500px', cursor: 'grab' }}>
+                <Service3DVisual type={data.visualType} />
               </div>
             </div>
           </div>
