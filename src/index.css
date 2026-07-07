@@ -300,10 +300,14 @@ button {
   .service-card,
   .work-card,
   .about-card,
-  .pricing-included {
-    backdrop-filter: blur(4px) !important;
-    -webkit-backdrop-filter: blur(4px) !important;
-    background: rgba(20, 20, 20, 0.92) !important;
+  .pricing-included,
+  .floating-bubble,
+  .cta-banner-panel,
+  .detail-feature-card,
+  .detail-step-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(20, 20, 20, 0.98) !important;
   }
 
   /* Disable heavy mask gradients on mobile glass borders if they exist */

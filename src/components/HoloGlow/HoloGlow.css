@@ -70,8 +70,7 @@
 
 @media (max-width: 768px) {
   .holo-orb {
-    /* Drastically reduce blur on mobile to save GPU */
-    filter: blur(40px);
+    /* Rely entirely on pre-softened gradients to save GPU */
     opacity: 0.5;
   }
   .holo-glow-container {
