@@ -109,18 +109,20 @@ export default function Work() {
   }, []);
 
   return (
-    <section className="work-section" id="work" ref={sectionRef}>
-      <div className="work-header">
-        <div className="container">
-          <div className="work-label">Selected Work</div>
-          <h2 className="work-heading">Featured Projects</h2>
+    <div id="work">
+      <section className="work-section" ref={sectionRef}>
+        <div className="work-header">
+          <div className="container">
+            <div className="work-label">Selected Work</div>
+            <h2 className="work-heading">Featured Projects</h2>
+          </div>
         </div>
-      </div>
-      <div className="work-track" ref={trackRef}>
-        {projects.map((project) => (
-          <WorkCard key={project.num} project={project} />
-        ))}
-      </div>
-    </section>
+        <div className="work-track" ref={trackRef}>
+          {projects.map((project) => (
+            <WorkCard key={project.num} project={project} />
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
